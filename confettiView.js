@@ -26,17 +26,15 @@ class ConfettiView extends Component {
     let {confettis} = this.state;
     let {confettiCount, timeout, untilStopped} = this.props;
     this.shouldStop = false;
-    if(untilStopped || this.confettiIndex < confettiCount) {
-      setTimeout(() => {
-        if (this.shouldStop) {
-          return;
-        } else {
-          confettis.push({key: this.confettiIndex});
-          this.confettiIndex++;
-          this.setState({confettis});
-          this.startConfetti();
-        }
-      }, timeout);
+    if (untilStopped || this.confettiIndex < confettiCount) {
+      if (this.shouldStop) {
+        return;
+      } else {
+        confettis.push({key: this.confettiIndex});
+        this.confettiIndex++;
+        this.setState({confettis});
+        this.startConfetti();
+      }
     }
   }
 
