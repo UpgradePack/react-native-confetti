@@ -36,7 +36,7 @@ class Confetti extends Component {
 
   constructor(props) {
     super(props);
-    this._yAnimation = new Animated.Value(0);
+    this._yAnimation = new Animated.Value(-10);
     this.color = this.randomColor(this.props.colors);
     this.left = this.randomValue(0, windowWidth);
     let rotationOutput = this.randomValue(-220, 220) + 'deg';
@@ -55,9 +55,10 @@ class Confetti extends Component {
   componentDidMount() {
     let { duration, index } = this.props;
     Animated.timing(this._yAnimation, {
-      duration: duration + this.randomIntValue(duration * .2, duration * -.2),
+      delay: this.randomIntValue(400, 1600),
+      duration: 2000 + (index * 20),
       toValue: windowHeight + 1.25,
-      useNativeDriver: true
+      useNativeDriver: true,
     }).start(this.props.onAnimationComplete);
   }
 
